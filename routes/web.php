@@ -18,3 +18,10 @@ Route::get('/', 'PrincipalController@principal');
 Route::get('/sobre-nos', 'SobreController@sobre');
 
 Route::get('/contato', 'ContatoController@contato');
+
+Route::prefix('app')->group(function () {
+    Route::get('/clientes', 'ContatoController@contato');
+    Route::get('/fornecedores', 'ContatoController@contato');
+    Route::get('/produtos', 'ContatoController@contato');
+});
+
