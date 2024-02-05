@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>Super Gestão - Sobre</title>
+        <title>guinafelix - sobre</title>
         <meta charset="utf-8">
 
         <style>
