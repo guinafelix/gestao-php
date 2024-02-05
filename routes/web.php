@@ -25,3 +25,6 @@ Route::prefix('app')->group(function () {
     Route::get('/produtos', 'ContatoController@contato')->name('app.produtos');
 });
 
+Route::fallback(function () {
+    echo 'Rota inexistente. <a href="'.route('site.index').'">Clique aqui<a/> para voltar à pagina inicial.';
+});
