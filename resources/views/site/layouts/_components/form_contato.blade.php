@@ -1,19 +1,19 @@
 <form action={{ route('site.contato') }} method="POST">
     @csrf
-    <input type="nome" placeholder="Nome" class="borda-preta">
+    <input type="nome" placeholder="Nome" class="{{ $classe }}">
     <br>
-    <input type="telefone" placeholder="Telefone" class="borda-preta">
+    <input type="telefone" placeholder="Telefone" class="{{ $classe }}">
     <br>
-    <input type="email" placeholder="E-mail" class="borda-preta">
+    <input type="email" placeholder="E-mail" class="{{ $classe }}">
     <br>
-    <select name="motivo_contato" class="borda-preta">
+    <select name="motivo_contato" class="{{ $classe }}">
         <option value="">Qual o motivo do contato?</option>
         <option value="1">Dúvida</option>
         <option value="2">Elogio</option>
         <option value="3">Reclamação</option>
     </select>
     <br>
-    <textarea name="mensage" class="borda-preta">Preencha aqui a sua mensagem</textarea>
+    <textarea name="mensage" class="{{ $classe }}">Preencha aqui a sua mensagem</textarea>
     <br>
-    <button type="submit" class="borda-preta">ENVIAR</button>
+    <button type="submit" class="{{ $classe }}">ENVIAR</button>
 </form>
