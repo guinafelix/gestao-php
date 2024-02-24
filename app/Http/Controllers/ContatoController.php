@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\MotivoContato;
 use App\SiteContato;
+use App\MotivoContato;
+use App\SiteContato;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
