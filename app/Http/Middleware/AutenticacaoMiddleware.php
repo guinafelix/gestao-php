@@ -15,6 +15,11 @@ class AutenticacaoMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return Response('acesso negado');
+        session_start();
+        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
+            return $next($request);
+        } else {
+            return redirect()->route('site.login', ['erro' => 2]);
+        }
     }
 }
