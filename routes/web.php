@@ -18,11 +18,11 @@ Route::get('/', 'PrincipalController@principal')
 Route::get('/sobre', 'SobreController@sobre')->name('site.sobre');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
-Route::get('/login', 'LoginController@index')->name('site.login');
+Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 
-Route::prefix('app')->group(function () {
+Route::middleware('autenticacao')->prefix('app')->group(function () {
     Route::get('/clientes', 'ContatoController@contato')->name('app.clientes');
     Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
     Route::get('/produtos', 'ContatoController@contato')->name('app.produtos');
