@@ -38,9 +38,14 @@ class LoginController extends Controller
             session_start();
             $_SESSION['nome'] = $userExist->nome;
             $_SESSION['email'] = $userExist->email;
-            return redirect()->route('app.clientes');
+            return redirect()->route('app.home');
         } else {
             return redirect()->route('site.login', ['erro' => 1]);
         }
+    }
+
+    public function sair() {
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
