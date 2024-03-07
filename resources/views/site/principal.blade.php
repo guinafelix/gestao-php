@@ -6,12 +6,12 @@
     <div class="conteudo-destaque">
         <div class="esquerda">
             <div class="informacoes">
-                <h1>Sistema GLF</h1>
-                <p>Software para gestão empresarial para sua empresa.
+                <h1>Sistema GestorX</h1>
+                <p>Software de gestão empresarial para sua empresa.
                 <p>
                 <div class="chamada">
                     <img src="{{ asset('img/check.png') }}">
-                    <span class="texto-branco">Gestão completa e descomplicada</span>
+                    <span class="texto-branco">Gestão completa</span>
                 </div>
                 <div class="chamada">
                     <img src="{{ asset('img/check.png') }}">
