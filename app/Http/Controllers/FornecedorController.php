@@ -26,9 +26,7 @@ class FornecedorController extends Controller
 
         $msg = '';
 
-        //inclusão
         if($request->input('_token') != '' && $request->input('id') == '') {
-            //validacao
             $regras = [
                 'nome' => 'required|min:3|max:40',
                 'site' => 'required',
@@ -50,13 +48,9 @@ class FornecedorController extends Controller
             $fornecedor = new Fornecedor();
             $fornecedor->create($request->all());
 
-            //redirect
-
-            //dados view
             $msg = 'Cadastro realizado com sucesso';
         }
 
-        //edição
         if($request->input('_token') != '' && $request->input('id') != '') {
             $fornecedor = Fornecedor::find($request->input('id'));
             $update = $fornecedor->update($request->all());
