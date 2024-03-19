@@ -26,11 +26,14 @@
                             <th>Descrição</th>
                             <th>Peso</th>
                             <th>Unidade ID</th>
+                            <th>Comprimento</th>
+                            <th>Altura</th>
+                            <th>Largura</th>
                             <th></th>
                             <th></th>
                             <th></th>
                         </tr>
-                    </thead>
+                        </head>
 
                     <tbody>
                         @foreach ($produtos as $produto)
@@ -39,6 +42,9 @@
                                 <td>{{ $produto->descricao }}</td>
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->unidade_id }}</td>
+                                <td>{{ $produto->produtoDetalhe->comprimento ?? '' }}</td>
+                                <td>{{ $produto->produtoDetalhe->altura ?? '' }}</td>
+                                <td>{{ $produto->produtoDetalhe->largura ?? '' }}</td>
                                 <td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
                                 <td>
                                     <form id="form_{{ $produto->id }}" method="post"
@@ -55,6 +61,7 @@
                         @endforeach
                     </tbody>
                 </table>
+
 
                 {{ $produtos->appends($request)->links() }}
 
