@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
+use App\Item;
 use App\ProdutoDetalhe;
 use App\Unidade;
 use Illuminate\Http\Request;
@@ -14,32 +15,13 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Request $request)
     {
-        $produtos = Produto::paginate(10);
+        $produtos = Item::paginate(10);
 
-        /*
-        foreach($produtos as $key => $produto) {
-            //print_r($produto->getAttributes());
-            //echo '<br><br>';
-
-            $produtoDetalhe = ProdutoDetalhe::where('produto_id', $produto->id)->first();
-            //collection ProdutoDetalhe
-            //ProdutoDetalhe
-            if(isset($produtoDetalhe)) {
-                //print_r($produtoDetalhe->getAttributes());
-                
-                $produtos[$key]['comprimento'] = $produtoDetalhe->comprimento;
-                $produtos[$key]['largura'] = $produtoDetalhe->largura;
-                $produtos[$key]['altura'] = $produtoDetalhe->altura;
-            }
-            //echo '<hr>';
-        }
-        */
-
-        return response(view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]));
+        return response(view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all() ]));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,7 +59,7 @@ class ProdutoController extends Controller
         ];
 
         $request->validate($regras, $feedback);
-
+        
         Produto::create($request->all());
         return redirect()->route('produto.index');
     }
@@ -116,7 +98,7 @@ class ProdutoController extends Controller
     public function update(Request $request, Produto $produto)
     {
         $produto->update($request->all());
-        return redirect()->route('produto.show', ['produto' => $produto->id]);
+        return redirect()->route('produto.show', ['produto' => $produto->id ]);
     }
 
     /**
