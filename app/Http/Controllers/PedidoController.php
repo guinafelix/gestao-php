@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pedido;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -11,10 +12,12 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $pedidos = Pedido::paginate(10);
+        return response(view('app.pedido.index', ['pedidos' => $pedidos, 'request' => $request->all()]));
     }
+
 
     /**
      * Show the form for creating a new resource.
