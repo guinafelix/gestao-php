@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 
 use App\SiteContato;
 use Faker\Generator as Faker;
@@ -10,7 +10,7 @@ $factory->define(SiteContato::class, function (Faker $faker) {
         'nome' => $faker->name,
         'telefone' => $faker->phoneNumber,
         'email' => $faker->unique()->email,
-        'motivo_contato' => $faker->numberBetween(1,3),
+        'motivo_contato' => $faker->numberBetween(1, 3),
         'mensagem' => $faker->text(200),
     ];
 });

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ItemDetalhe;
-use Illuminate\Http\Request;
-use App\Unidade;
 use App\ProdutoDetalhe;
+use App\Unidade;
+use Illuminate\Http\Request;
 
 class ProdutoDetalheController extends Controller
 {
@@ -27,13 +27,14 @@ class ProdutoDetalheController extends Controller
     public function create()
     {
         $unidades = Unidade::all();
+
         return response(view('app.produto_detalhe.create', ['unidades' => $unidades]));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -63,14 +64,15 @@ class ProdutoDetalheController extends Controller
     {
         $produtoDetalhe = ItemDetalhe::with(['item'])->find($id);
         $unidades = Unidade::all();
+
         return response(view('app.produto_detalhe.edit', ['produto_detalhe' => $produtoDetalhe, 'unidades' => $unidades]));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProdutoDetalhe $produtoDetalhe
+     * @param  Request  $request
+     * @param  ProdutoDetalhe $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ProdutoDetalhe $produtoDetalhe)

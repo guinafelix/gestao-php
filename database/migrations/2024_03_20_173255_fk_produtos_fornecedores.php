@@ -14,7 +14,7 @@ class FkProdutosFornecedores extends Migration
     public function up()
     {
         //
-        Schema::table('produtos', function(Blueprint $table) {
+        Schema::table('produtos', function (Blueprint $table) {
             $table->unsignedBigInteger('fornecedor_id')->after('id');
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
         });
@@ -28,7 +28,7 @@ class FkProdutosFornecedores extends Migration
     public function down()
     {
         //
-         Schema::table('produtos', function (Blueprint $table) {
+        Schema::table('produtos', function (Blueprint $table) {
             $table->dropForeign('produtos_fornecedor_id_foreign');
             $table->dropColumn('fornecedor_id');
         });

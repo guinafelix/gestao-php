@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Fornecedor;
+use Illuminate\Database\Seeder;
 
 class FornecedorSeeder extends Seeder
 {
@@ -24,7 +24,7 @@ class FornecedorSeeder extends Seeder
             'nome' => 'fornecedor 2',
             'site' => 'fornecedor2.com.br',
             'uf' => 'SP',
-            'email' => 'fornecedor2@gmail.com.br'
+            'email' => 'fornecedor2@gmail.com.br',
         ]);
     }
 }

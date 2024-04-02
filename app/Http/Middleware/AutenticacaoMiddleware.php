@@ -10,13 +10,13 @@ class AutenticacaoMiddleware
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         session_start();
-        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
+        if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
             return $next($request);
         } else {
             return redirect()->route('site.login', ['erro' => 2]);

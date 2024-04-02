@@ -11,6 +11,7 @@ class ContatoController extends Controller
     public function contato(Request $request)
     {
         $motivo_contatos = MotivoContato::all();
+
         return view('site.contato', ['motivo_contatos' => $motivo_contatos]);
     }
 
@@ -21,7 +22,7 @@ class ContatoController extends Controller
             'telefone' => 'required',
             'email' => 'email',
             'motivo_contatos_id' => 'required',
-            'mensagem' => 'required|max:2000'
+            'mensagem' => 'required|max:2000',
         ];
 
         $feedback = [
@@ -33,12 +34,13 @@ class ContatoController extends Controller
 
             'mensagem.max' => 'A mensagem deve ter no máximo 2000 caracteres',
 
-            'required' => 'O campo :attribute deve ser preenchido'
+            'required' => 'O campo :attribute deve ser preenchido',
         ];
 
         $request->validate($regras, $feedback);
 
         SiteContato::create($request->all());
+
         return redirect()->route('site.index');
     }
 }

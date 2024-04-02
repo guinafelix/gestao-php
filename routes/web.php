@@ -21,7 +21,6 @@ Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
 Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
-
 Route::middleware('autenticacao')->prefix('app')->group(function () {
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
@@ -32,7 +31,7 @@ Route::middleware('autenticacao')->prefix('app')->group(function () {
     Route::post('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
     Route::get('/fornecedor/editar/{id}/{msg?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
     Route::get('/fornecedor/excluir/{id}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
-   
+
     Route::resource('produto', 'ProdutoController');
     Route::resource('produto-detalhe', 'ProdutoDetalheController');
     Route::resource('cliente', 'ClienteController');

@@ -20,7 +20,7 @@ class AjusteProdutosFiliais extends Migration
             $table->timestamps();
         });
 
-         Schema::create('produto_filiais', function (Blueprint $table) {
+        Schema::create('produto_filiais', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('filial_id');
@@ -47,9 +47,9 @@ class AjusteProdutosFiliais extends Migration
     {
         //
         Schema::table('produtos', function (Blueprint $table) {
-           $table->decimal('preco_venda', 8, 2);
-           $table->integer('estoque_minimo');
-           $table->integer('estoque_maximo');
+            $table->decimal('preco_venda', 8, 2);
+            $table->integer('estoque_minimo');
+            $table->integer('estoque_maximo');
         });
         Schema::dropIfExists('produto_filiais');
         Schema::dropIfExists('filiais');

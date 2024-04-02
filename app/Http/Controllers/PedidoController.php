@@ -16,9 +16,9 @@ class PedidoController extends Controller
     public function index(Request $request)
     {
         $pedidos = Pedido::paginate(10);
+
         return response(view('app.pedido.index', ['pedidos' => $pedidos, 'request' => $request->all()]));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -28,23 +28,24 @@ class PedidoController extends Controller
     public function create()
     {
         $clientes = Cliente::all();
+
         return response(view('app.pedido.create', ['clientes' => $clientes]));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $regras = [
-            'cliente_id' => 'exists:clientes,id'
+            'cliente_id' => 'exists:clientes,id',
         ];
 
         $feedback = [
-            'cliente_id.exists' => 'O cliente informado não existe'
+            'cliente_id.exists' => 'O cliente informado não existe',
         ];
 
         $request->validate($regras, $feedback);
@@ -81,7 +82,7 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

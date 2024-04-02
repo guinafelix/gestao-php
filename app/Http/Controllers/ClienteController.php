@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Cliente;
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -15,6 +15,7 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $clientes = Cliente::paginate(10);
+
         return response(view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]));
     }
 
@@ -31,13 +32,13 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $regras = [
-            'nome' => 'required|min:3|max:40'
+            'nome' => 'required|min:3|max:40',
         ];
 
         $feedback = [
@@ -80,7 +81,7 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

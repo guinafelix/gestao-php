@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Fornecedor;
-use App\Produto;
 use App\Item;
+use App\Produto;
 use App\Unidade;
 use Illuminate\Http\Request;
 
@@ -31,13 +31,14 @@ class ProdutoController extends Controller
     {
         $unidades = Unidade::all();
         $fornecedores = Fornecedor::all();
+
         return response(view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores]));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +48,7 @@ class ProdutoController extends Controller
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id',
-            'fornecedor_id' => 'exists:fornecedores,id'
+            'fornecedor_id' => 'exists:fornecedores,id',
         ];
 
         $feedback = [
@@ -58,19 +59,20 @@ class ProdutoController extends Controller
             'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres',
             'peso.integer' => 'O campo peso deve ser um número inteiro',
             'unidade_id.exists' => 'A unidade de medida informada não existe',
-            'fornecedor_id.exists' => 'O fornecedor informado não existe'
+            'fornecedor_id.exists' => 'O fornecedor informado não existe',
         ];
 
         $request->validate($regras, $feedback);
 
         Item::create($request->all());
+
         return redirect()->route('produto.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  Produto  $produto
      * @return \Illuminate\Http\Response
      */
     public function show(Produto $produto)
@@ -81,21 +83,22 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  Produto  $produto
      * @return \Illuminate\Http\Response
      */
     public function edit(Produto $produto)
     {
         $unidades = Unidade::all();
         $fornecedores = Fornecedor::all();
+
         return response(view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
+     * @param  Request  $request
+     * @param  Produto  $produto
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Item $produto)
@@ -105,7 +108,7 @@ class ProdutoController extends Controller
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id',
-            'fornecedor_id' => 'exists:fornecedores,id'
+            'fornecedor_id' => 'exists:fornecedores,id',
         ];
 
         $feedback = [
@@ -116,26 +119,28 @@ class ProdutoController extends Controller
             'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres',
             'peso.integer' => 'O campo peso deve ser um número inteiro',
             'unidade_id.exists' => 'A unidade de medida informada não existe',
-            'fornecedor_id.exists' => 'O fornecedor informado não existe'
+            'fornecedor_id.exists' => 'O fornecedor informado não existe',
         ];
 
         $request->validate($regras, $feedback);
 
         //dd($request->all());
         $produto->update($request->all());
+
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Produto  $produto
+     * @param  Produto  $produto
      * @return \Illuminate\Http\Response
      */
     public function destroy(Produto $produto)
     {
         $produto->produtoDetalhe()->delete();
         $produto->delete();
+
         return redirect()->route('produto.index');
     }
 }
