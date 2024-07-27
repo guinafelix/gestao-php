@@ -6,7 +6,7 @@ use App\Http\Interfaces\ClienteRepoInterface;
 
 class ClienteRepoImpl implements ClienteRepoInterface {
   public function getAll() {
-
+    
   }
   
   public function getById($id){}

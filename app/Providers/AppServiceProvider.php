@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Http\Interfaces\ClienteRepoInterface;
+use App\Http\Interfaces\FornecedorRepoInterface;
 use App\Http\Repositories\ClienteRepoImpl;
+use App\Http\Repositories\FornecedorRepoImpl;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(ClienteRepoInterface::class, ClienteRepoImpl::class);
+        $this->app->bind(FornecedorRepoInterface::class, FornecedorRepoImpl::class);
     }
 
     /**
