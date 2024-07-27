@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Cliente;
 
 use App\Http\Services\ClienteService;
 use Illuminate\Http\Request;
@@ -23,8 +22,6 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         return $this->clienteService->index($request);
-        //$clientes = Cliente::paginate(10);
-        //return response(view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]));
     }
 
     /**
@@ -34,7 +31,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return response(view('app.cliente.create'));
+        //return response(view('app.cliente.create'));
+        return $this->clienteService->create();
     }
 
     /**
@@ -45,23 +43,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $regras = [
-            'nome' => 'required|min:3|max:40',
-        ];
-
-        $feedback = [
-            'required' => 'O campo :attribute deve ser preenchido',
-            'nome.min' => 'O campo nome de ter no mínimo 3 caracteres',
-            'nome.max' => 'O campo nome de ter no máximo 40 caracteres',
-        ];
-
-        $request->validate($regras, $feedback);
-
-        $cliente = new Cliente();
-        $cliente->nome = $request->get('nome');
-        $cliente->save();
-
-        return redirect()->route('cliente.index');
+        return $this->clienteService->store($request);
     }
 
     /**
@@ -107,5 +89,6 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+        return $this->clienteService->destroy($id);
     }
 }

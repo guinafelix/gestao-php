@@ -10,12 +10,15 @@ class ClienteRepoImpl implements ClienteRepoInterface {
   }
   
   public function getById($id){}
-  public function create(array $data){
-
+  public function create(array $dados){
+    $cliente = new Cliente();
+    $cliente->nome = $dados['nome'];
+    $cliente->save();
+    return $cliente;
   }
   public function update(array $data, $id){}
-  public function delete($id){
-
+  public function destroy($id){
+    Cliente::find($id)->delete();
   }
 
   public function paginate($number) {
