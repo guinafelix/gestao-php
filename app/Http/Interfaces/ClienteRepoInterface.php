@@ -3,12 +3,10 @@
 namespace App\Http\Interfaces;
 
 interface ClienteRepoInterface {
-
-  public function index(Request $request);
-  public function create();
-  public function store(Request $request);
-  public function show($id);
-  public function edit($id);
-  public function update(Request $request, $id);
-  public function destroy($id);
+  public function getAll();
+  public function getById($id);
+  public function create(array $data);
+  public function update(array $data, $id);
+  public function delete($id);
+  public function paginate($number);
 }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Interfaces\ClienteRepoInterface;
+use App\Http\Repositories\ClienteRepoImpl;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(ClienteRepoInterface::class, ClienteRepoImpl::class);
     }
 
     /**

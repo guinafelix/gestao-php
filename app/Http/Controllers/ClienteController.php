@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+
+use App\Http\Services\ClienteService;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    private $clienteService;
+
+    public function __construct(ClienteService $clienteService) {
+        $this->clienteService = $clienteService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +22,9 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $clientes = Cliente::paginate(10);
-
-        return response(view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]));
+        return $this->clienteService->index($request);
+        //$clientes = Cliente::paginate(10);
+        //return response(view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]));
     }
 
     /**
