@@ -15,4 +15,6 @@ interface FornecedorRepoInterface
     public function destroy($id);
 
     public function paginate($number);
+
+    public function search(array $filtros);
 }

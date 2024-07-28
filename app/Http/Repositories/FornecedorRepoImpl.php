@@ -37,4 +37,27 @@ class FornecedorRepoImpl implements FornecedorRepoInterface
     {
         return Fornecedor::paginate($number);
     }
+
+    public function search(array $filtros)
+    {
+        $query = Fornecedor::with(['produtos']);
+
+        if (! empty($filtros['nome'])) {
+            $query->where('nome', 'like', '%'.$filtros['nome'].'%');
+        }
+
+        if (! empty($filtros['site'])) {
+            $query->where('site', 'like', '%'.$filtros['site'].'%');
+        }
+
+        if (! empty($filtros['uf'])) {
+            $query->where('uf', 'like', '%'.$filtros['uf'].'%');
+        }
+
+        if (! empty($filtros['email'])) {
+            $query->where('email', 'like', '%'.$filtros['email'].'%');
+        }
+
+        return $query->paginate(20);
+    }
 }
