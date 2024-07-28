@@ -13,19 +13,21 @@ class FornecedorRepoImpl implements FornecedorRepoInterface
 
     public function getById($id)
     {
+        return Fornecedor::find($id);
     }
 
     public function create(array $dados)
     {
         $fornecedor = new Fornecedor();
-        $fornecedor->nome = $dados['nome'];
-        $fornecedor->save();
+        $fornecedor->create($dados);
 
         return $fornecedor;
     }
 
     public function update(array $data, $id)
     {
+        $fornecedor = $this->getById($id);
+        return $fornecedor->update($data);
     }
 
     public function destroy($id)
