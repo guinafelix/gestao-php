@@ -27,6 +27,7 @@ class FornecedorRepoImpl implements FornecedorRepoInterface
     public function update(array $data, $id)
     {
         $fornecedor = $this->getById($id);
+
         return $fornecedor->update($data);
     }
 

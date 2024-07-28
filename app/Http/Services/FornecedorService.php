@@ -31,9 +31,10 @@ class FornecedorService
     {
         $filtros = $request->only(['nome', 'site', 'uf', 'email']);
         $fornecedores = $this->fornecedorRepository->search($filtros);
+
         return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
-    
+
     public function adicionar(Request $request)
     {
         $msg = '';
