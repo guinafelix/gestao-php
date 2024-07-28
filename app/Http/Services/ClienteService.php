@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Cliente;
 use App\Http\Interfaces\ClienteRepoInterface;
 use Illuminate\Http\Request;
 
@@ -51,5 +52,9 @@ class ClienteService
         $this->clienteRepository->destroy($id);
 
         return redirect()->route('cliente.index');
+    }
+
+    public function show(Cliente $cliente){
+        return response(view('app.cliente.show', ['cliente' => $cliente]));
     }
 }

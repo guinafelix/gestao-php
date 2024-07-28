@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Http\Services\ClienteService;
 use Illuminate\Http\Request;
 
@@ -52,9 +53,10 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cliente $cliente)
     {
         //
+        return $this->clienteService->show($cliente);
     }
 
     /**

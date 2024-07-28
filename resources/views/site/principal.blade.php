@@ -15,7 +15,7 @@
                 </div>
                 <div class="chamada">
                     <img src="{{ asset('img/check.png') }}">
-                    <span class="texto-branco">Sua empresa na nuvem</span>
+                    <span class="texto-branco">100% seguro</span>
                 </div>
             </div>
 
