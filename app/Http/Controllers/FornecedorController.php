@@ -10,10 +10,11 @@ class FornecedorController extends Controller
 {
     private $fornecedorService;
 
-    public function __construct(FornecedorService $fornecedorService){
-        $this->fornecedorService  = $fornecedorService;
+    public function __construct(FornecedorService $fornecedorService)
+    {
+        $this->fornecedorService = $fornecedorService;
     }
-    
+
     public function index()
     {
         return $this->fornecedorService->index();

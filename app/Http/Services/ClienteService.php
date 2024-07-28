@@ -7,46 +7,49 @@ use Illuminate\Http\Request;
 
 class ClienteService
 {
-  private $clienteRepository;
+    private $clienteRepository;
 
-  public function __construct(ClienteRepoInterface $clienteRepoInterface)
-  {
-    $this->clienteRepository = $clienteRepoInterface;
-  }
+    public function __construct(ClienteRepoInterface $clienteRepoInterface)
+    {
+        $this->clienteRepository = $clienteRepoInterface;
+    }
 
-  public function index(Request $request)
-  {
-    $clientes = $this->clienteRepository->paginate(10);
-    return response(view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]));
-  }
+    public function index(Request $request)
+    {
+        $clientes = $this->clienteRepository->paginate(10);
 
-  public function create()
-  {
-    return response(view('app.cliente.create'));
-  }
+        return response(view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]));
+    }
 
-  public function store(Request $request)
-  {
-    $regras = [
-      'nome' => 'required|min:3|max:40',
-    ];
+    public function create()
+    {
+        return response(view('app.cliente.create'));
+    }
 
-    $feedback = [
-      'required' => 'O campo :attribute deve ser preenchido',
-      'nome.min' => 'O campo nome de ter no mínimo 3 caracteres',
-      'nome.max' => 'O campo nome de ter no máximo 40 caracteres',
-    ];
+    public function store(Request $request)
+    {
+        $regras = [
+          'nome' => 'required|min:3|max:40',
+        ];
 
-    $request->validate($regras, $feedback);
+        $feedback = [
+          'required' => 'O campo :attribute deve ser preenchido',
+          'nome.min' => 'O campo nome de ter no mínimo 3 caracteres',
+          'nome.max' => 'O campo nome de ter no máximo 40 caracteres',
+        ];
 
-    $dados = ['nome' =>$request->get('nome')];
-    $this->clienteRepository->create($dados);
+        $request->validate($regras, $feedback);
 
-    return redirect()->route('cliente.index');
-  }
+        $dados = ['nome' =>$request->get('nome')];
+        $this->clienteRepository->create($dados);
 
-  public function destroy($id) {
-    $this->clienteRepository->destroy($id);
-    return redirect()->route('cliente.index');
-  }
+        return redirect()->route('cliente.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->clienteRepository->destroy($id);
+
+        return redirect()->route('cliente.index');
+    }
 }
