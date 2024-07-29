@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Fornecedor;
+use Illuminate\Support\Facades\DB;
 use App\Http\Interfaces\FornecedorRepoInterface;
 
 class FornecedorRepoImpl implements FornecedorRepoInterface
@@ -33,6 +34,7 @@ class FornecedorRepoImpl implements FornecedorRepoInterface
 
     public function destroy($id)
     {
+        DB::table('produtos')->where('fornecedor_id', $id)->delete();
         Fornecedor::find($id)->delete();
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Cliente;
+use Illuminate\Support\Facades\DB;
 use App\Http\Interfaces\ClienteRepoInterface;
 
 class ClienteRepoImpl implements ClienteRepoInterface
@@ -30,6 +31,7 @@ class ClienteRepoImpl implements ClienteRepoInterface
 
     public function destroy($id)
     {
+        DB::table('pedidos')->where('cliente_id', $id)->delete();
         Cliente::find($id)->delete();
     }
 

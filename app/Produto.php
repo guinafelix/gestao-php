@@ -12,4 +12,9 @@ class Produto extends Model
     {
         return $this->hasOne('App\ProdutoDetalhe');
     }
+
+    public function pedidosProdutos()
+    {
+        return $this->hasMany(PedidoProduto::class, 'produto_id');
+    }
 }

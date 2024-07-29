@@ -52,7 +52,7 @@
                                 <td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
                                 <td>
                                     <form id="form_{{ $produto->id }}" method="post"
-                                        action="{{ route('produto.destroy', ['produto' => $produto->id]) }}">
+                                        action="{{ route('produto.destroy', ['produto' => $produto]) }}">
                                         @method('DELETE')
                                         @csrf
                                         <!--<button type="submit">Excluir</button>-->

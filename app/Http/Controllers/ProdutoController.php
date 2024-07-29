@@ -137,7 +137,8 @@ class ProdutoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Produto $produto)
-    {
+    {   
+        $produto->pedidosProdutos()->delete();
         $produto->produtoDetalhe()->delete();
         $produto->delete();
 
