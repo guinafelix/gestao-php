@@ -16,7 +16,7 @@
                 {{ $errors->has('usuario') ? $errors->first('usuario') :  ''  }}
                 <input type="password" name="senha" placeholder="Senha" class="borda-preta">
                 {{ $errors->has('senha') ? $errors->first('senha') :  ''  }}
-                <a class="link-padrao" href="#">Criar conta</a>
+                <a class="link-padrao" href="{{ route('usuario.create') }}">Criar conta</a>
                 <button type="submit" class="borda-preta">Acessar</button>
               </form>
               {{ isset($erro) && $erro != '' ? $erro : '' }}
