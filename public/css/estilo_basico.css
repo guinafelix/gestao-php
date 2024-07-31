@@ -215,3 +215,20 @@ span {
 .pagination ul {
     list-style-type: none;
 }
+
+.form-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: auto;
+    flex-direction: column;
+}
+
+.link-padrao {
+    color: #1351b4;
+    text-decoration: underline;
+    font-size: 14px;
+    text-align: start;
+    font-weight: 400;
+}
