@@ -54,7 +54,8 @@ class ClienteService
         return redirect()->route('cliente.index');
     }
 
-    public function show(Cliente $cliente){
+    public function show(Cliente $cliente)
+    {
         return response(view('app.cliente.show', ['cliente' => $cliente]));
     }
 }

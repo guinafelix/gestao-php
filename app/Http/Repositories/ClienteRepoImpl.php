@@ -3,8 +3,8 @@
 namespace App\Http\Repositories;
 
 use App\Cliente;
-use Illuminate\Support\Facades\DB;
 use App\Http\Interfaces\ClienteRepoInterface;
+use Illuminate\Support\Facades\DB;
 
 class ClienteRepoImpl implements ClienteRepoInterface
 {

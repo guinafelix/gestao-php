@@ -3,8 +3,8 @@
 namespace App\Http\Repositories;
 
 use App\Fornecedor;
-use Illuminate\Support\Facades\DB;
 use App\Http\Interfaces\FornecedorRepoInterface;
+use Illuminate\Support\Facades\DB;
 
 class FornecedorRepoImpl implements FornecedorRepoInterface
 {
