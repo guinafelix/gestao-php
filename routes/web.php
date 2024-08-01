@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Rotas de autenticação
+Auth::routes(['verify' => true]);
+
+// Rota para a página de notificação de verificação de e-mail
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// Rota para verificar o e-mail
+Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Rota para reenviar o link de verificação de e-mail
+Route::post('/email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 Route::get('/', 'PrincipalController@principal')
     ->name('site.index');
@@ -47,3 +62,7 @@ Route::middleware('autenticacao')->prefix('app')->group(function () {
 Route::fallback(function () {
     echo 'Rota inexistente. <a href="'.route('site.index').'">Clique aqui<a/> para voltar à pagina inicial.';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

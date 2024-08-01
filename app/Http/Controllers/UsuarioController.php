@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -31,26 +34,38 @@ class UsuarioController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
         $regras = [
             'nome' => 'required|min:3|max:40',
             'senha' => 'required',
             'confirmar-senha' => 'required|same:senha',
-            'email' => 'email',
+            'email' => 'required|email',
         ];
         $feedback = [
-            'usuario.email' => 'O campo usuário (e-mail) é obrigatório.',
-            'required' => 'O campo :attribute deve ser preenchida',
-            'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres',
-            'nome.max' => 'O campo nome deve ter no máximo 40 caracteres',
-            'email.email' => 'O campo e-mail não foi preenchido corretamente',
-            'confirmar-senha.same' => 'A confirmação da senha deve ser igual à senha',
+            'nome.required' => 'O campo nome é obrigatório.',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres.',
+            'nome.max' => 'O campo nome deve ter no máximo 40 caracteres.',
+            'senha.required' => 'O campo senha é obrigatório.',
+            'confirmar-senha.required' => 'O campo confirmação de senha é obrigatório.',
+            'confirmar-senha.same' => 'A confirmação da senha deve ser igual à senha.',
+            'email.required' => 'O campo e-mail é obrigatório.',
+            'email.email' => 'O campo e-mail deve ser um e-mail válido.',
         ];
-        $request->validate($regras, $feedback);
+
+        $validatedData = $request->validate($regras, $feedback);
+
+        $user = User::create([
+            'name' => $validatedData['nome'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['senha']),
+        ]);
+
+        $user->sendEmailVerificationNotification();
+
+        return redirect()->route('site.login')->with('status', 'Cadastro realizado com sucesso! Por favor, verifique seu e-mail.');
     }
 
     /**
