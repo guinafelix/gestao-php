@@ -65,7 +65,7 @@ class UsuarioController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return redirect()->route('site.login')->with('status', 'Cadastro realizado com sucesso! Por favor, verifique seu e-mail.');
+        return redirect()->route('login')->with('status', 'Cadastro realizado com sucesso! Por favor, verifique seu e-mail.');
     }
 
     /**

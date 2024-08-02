@@ -10,12 +10,13 @@
             <li><a href="{{ route('pedido.index') }}">Pedido</a></li>
             <li><a href="{{ route('app.fornecedor') }}">Fornecedor</a></li>
             <li><a href="{{ route('produto.index') }}">Produto</a></li>
-            <li>
-                <form id="logout-form" action="{{ route('app.sair') }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit">Sair</button>
-                </form>
-            </li>
+            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+             document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </ul>
     </div>
 </div>

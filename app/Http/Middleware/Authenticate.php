@@ -18,7 +18,7 @@ class Authenticate extends Middleware
         Log::info('Método redirect foi chamado');
 
         if (! $request->expectsJson()) {
-            return route('site.login');
+            return route('login');
         }
     }
 }

@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login/{erro?}', 'Auth\LoginController@index')->name('site.login');
-Route::post('/login', 'Auth\LoginController@autenticar')->name('site.login');
+Route::get('/login/{erro?}', 'Auth\LoginController@index')->name('login');
+Route::post('/login', 'Auth\LoginController@autenticar')->name('login');
 
 // Rota para a página de notificação de verificação de e-mail
 Route::get('/email/verify', function () {
@@ -38,7 +38,7 @@ Route::resource('usuario', 'UsuarioController');
 
 Route::middleware('auth')->prefix('app')->group(function () {
     Route::get('/home', 'HomeController@index')->name('app.home');
-    Route::post('/sair', 'Auth\LoginController@sair')->name('app.sair');
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
     Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
     Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');

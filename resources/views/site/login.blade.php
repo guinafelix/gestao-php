@@ -10,7 +10,7 @@
 
         <div class="informacao-pagina">
             <div class="form-login"style="width: 30%; margin-left:auto; margin-right:auto;">
-              <form action="{{ route('site.login') }}" method="POST">
+              <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <input type="email" value="{{ old('email') }}" name="email" placeholder="Email" class="borda-preta">
                 {{ $errors->has('email') ? $errors->first('email') :  ''  }}

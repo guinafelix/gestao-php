@@ -11,7 +11,7 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('site.login') }}">Voltar</a></li>
+                <li><a href="{{ route('login') }}">Voltar</a></li>
                 <li><a href="">Consulta</a></li>
             </ul>
         </div>

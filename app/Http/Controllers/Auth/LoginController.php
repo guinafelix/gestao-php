@@ -80,20 +80,14 @@ class LoginController extends Controller
                 return redirect()->route('verification.notice');
             }
         } else {
-            return redirect()->route('site.login', ['erro' => 1]);
+            return redirect()->route('login', ['erro' => 1]);
         }
     }
 
-    public function sair(Request $request)
+    public function logout(Request $request)
     {
         Log::info('Método sair foi chamado');
-
-
         Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('site.login');
+        return redirect()->route('app.home');
     }
 }
