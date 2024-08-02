@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -26,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/app/home';
 
     /**
      * Create a new controller instance.
@@ -36,5 +38,62 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function index(Request $request)
+    {
+        $erro = '';
+        if ($request->get('erro') == 1) {
+            $erro = 'Usuário e/ou senha não existe.';
+        }
+        if ($request->get('erro') == 2) {
+            $erro = 'Necesśario realizar login para ter acesso à pagina.';
+        }
+
+        return view('site.login', ['titulo' => 'Login', 'erro' => $erro]);
+    }
+
+    public function autenticar(Request $request)
+    {
+        $regras = [
+            'email' => 'required|email',
+            'senha' => 'required',
+        ];
+
+        $feedback = [
+            'email' => 'O campo email é obrigatório.',
+            'senha.required' => 'O campo senha é obrigatório',
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $credentials = $request->only('email', 'senha');
+
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['senha']])) {
+            $user = Auth::user();
+
+            if ($user->hasVerifiedEmail()) {
+                return redirect()->intended($this->redirectTo);
+            } else {
+                Auth::logout();
+
+                return redirect()->route('verification.notice');
+            }
+        } else {
+            return redirect()->route('site.login', ['erro' => 1]);
+        }
+    }
+
+    public function sair(Request $request)
+    {
+        Log::info('Método sair foi chamado');
+
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('site.login');
     }
 }

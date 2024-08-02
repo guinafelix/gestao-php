@@ -10,7 +10,12 @@
             <li><a href="{{ route('pedido.index') }}">Pedido</a></li>
             <li><a href="{{ route('app.fornecedor') }}">Fornecedor</a></li>
             <li><a href="{{ route('produto.index') }}">Produto</a></li>
-            <li><a href="{{ route('app.sair') }}">Sair</a></li>
+            <li>
+                <form id="logout-form" action="{{ route('app.sair') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit">Sair</button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>

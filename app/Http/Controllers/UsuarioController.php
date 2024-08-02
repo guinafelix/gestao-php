@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
@@ -34,7 +34,7 @@ class UsuarioController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Rotas de autenticação
-Auth::routes(['verify' => true]);
+Route::get('/login/{erro?}', 'Auth\LoginController@index')->name('site.login');
+Route::post('/login', 'Auth\LoginController@autenticar')->name('site.login');
 
 // Rota para a página de notificação de verificação de e-mail
 Route::get('/email/verify', function () {
@@ -23,23 +23,22 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 // Rota para verificar o e-mail
-Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->middleware(['auth', 'signed'])->name('verification.verify');
 
 // Rota para reenviar o link de verificação de e-mail
-Route::post('/email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+Route::post('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 Route::get('/', 'PrincipalController@principal')
     ->name('site.index');
 Route::get('/sobre', 'SobreController@sobre')->name('site.sobre');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
-Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
-Route::post('/login', 'LoginController@autenticar')->name('site.login');
+
 Route::resource('usuario', 'UsuarioController');
 
-Route::middleware('autenticacao')->prefix('app')->group(function () {
+Route::middleware('auth')->prefix('app')->group(function () {
     Route::get('/home', 'HomeController@index')->name('app.home');
-    Route::get('/sair', 'LoginController@sair')->name('app.sair');
+    Route::post('/sair', 'Auth\LoginController@sair')->name('app.sair');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
     Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
     Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
@@ -62,7 +61,3 @@ Route::middleware('autenticacao')->prefix('app')->group(function () {
 Route::fallback(function () {
     echo 'Rota inexistente. <a href="'.route('site.index').'">Clique aqui<a/> para voltar à pagina inicial.';
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
