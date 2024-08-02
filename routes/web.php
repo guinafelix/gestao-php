@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,16 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login/{erro?}', 'Auth\LoginController@index')->name('login');
 Route::post('/login', 'Auth\LoginController@autenticar')->name('login');
 
-// Rota para a página de notificação de verificação de e-mail
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-// Rota para verificar o e-mail
-Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->middleware(['auth', 'signed'])->name('verification.verify');
-
-// Rota para reenviar o link de verificação de e-mail
-Route::post('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice')->middleware('guest');
+Route::get('email/verificado', 'Auth\VerificationController@complete')->name('verification.complete')->middleware('guest');
+Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify')->middleware('signed');
+Route::post('email/resend', 'Auth\VerificationControllerout@resend')->name('verification.resend')->middleware(['throttle:6,1', 'auth']);
 
 Route::get('/', 'PrincipalController@principal')
     ->name('site.index');

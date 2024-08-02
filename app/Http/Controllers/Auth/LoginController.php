@@ -61,7 +61,7 @@ class LoginController extends Controller
         ];
 
         $feedback = [
-            'email' => 'O campo email é obrigatório.',
+            'email.required' => 'O campo email é obrigatório.',
             'senha.required' => 'O campo senha é obrigatório',
         ];
 
@@ -88,6 +88,7 @@ class LoginController extends Controller
     {
         Log::info('Método sair foi chamado');
         Auth::logout();
+
         return redirect()->route('app.home');
     }
 }
