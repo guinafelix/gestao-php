@@ -17,11 +17,18 @@ class RedirectIfAuthenticated
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
-    {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+{
+    if (Auth::guard($guard)->check()) {
+        $user = Auth::guard($guard)->user();
+
+        if (!$user->hasVerifiedEmail()) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect(RouteServiceProvider::HOME);
     }
+
+    return $next($request);
+}
+
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -75,8 +74,6 @@ class LoginController extends Controller
             if ($user->hasVerifiedEmail()) {
                 return redirect()->intended($this->redirectTo);
             } else {
-                Auth::logout();
-
                 return redirect()->route('verification.notice');
             }
         } else {
@@ -86,9 +83,8 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Log::info('Método sair foi chamado');
         Auth::logout();
 
-        return redirect()->route('app.home');
+        return redirect()->route('site.index');
     }
 }

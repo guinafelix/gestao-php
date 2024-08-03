@@ -17,7 +17,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/email/complete';
 
     /**
      * Create a new controller instance.
@@ -26,7 +26,7 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('resend');
+        $this->middleware('guest')->except('resend', 'verify');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
