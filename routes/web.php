@@ -20,6 +20,9 @@ Route::get('/', 'PrincipalController@principal')->name('site.index');
 Route::get('/sobre', 'SobreController@sobre')->name('site.sobre');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
+// routes/web.php
+Route::post('/chat', 'ChatbotController@chat');
+
 
 // Rotas protegidas (requerem autenticação)
 Route::prefix('app')->group(function () {
