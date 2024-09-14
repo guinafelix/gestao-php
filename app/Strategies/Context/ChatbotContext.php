@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Strategies\Context;
 
 use App\Strategies\ChatStrategy;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Http\Services;
 
 use GuzzleHttp\Client;
 
@@ -19,11 +19,11 @@ class ChatGPTService
     {
         $response = $this->client->post('https://api.openai.com/v1/chat/completions', [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->apiKey,
+                'Authorization' => "Bearer {$this->apiKey}",
                 'Content-Type' => 'application/json',
             ],
             'json' => [
-                'model' => 'gpt-4',
+                'model' => 'gpt-3.5-turbo-0125',
                 'messages' => [['role' => 'user', 'content' => $message]],
             ],
         ]);
