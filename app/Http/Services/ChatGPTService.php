@@ -23,7 +23,7 @@ class ChatGPTService
                 'Content-Type' => 'application/json',
             ],
             'json' => [
-                'model' => 'gpt-3.5-turbo-0125',
+                'model' => 'gpt-4o-mini',
                 'messages' => [['role' => 'user', 'content' => $message]],
             ],
         ]);
