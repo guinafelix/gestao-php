@@ -13,19 +13,15 @@
 
 <body>  
   @include('app.layouts._partials.topo')
-      <!-- Botão flutuante -->
-      <!-- <button id="chatbot-btn">Chat</button> -->
       <i id="chatbot-btn" class="fa-regular fa-comments"></i>
 
 
-      <!-- Janela do chatbot -->
       <div id="chatbot-container">
           <div id="chatbot-header">
             <h3>Chatbot</h3>
             <i class="fa-solid fa-x close-chat" id="close-chat"></i>
           </div>
           <div id="chat-body">
-              <!-- Mensagens vão aparecer aqui -->
           </div>
           <div id="chatbot-footer">
               <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
