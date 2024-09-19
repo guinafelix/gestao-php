@@ -6,7 +6,7 @@
     <div class="conteudo-destaque">
         <div class="esquerda">
             <div class="informacoes">
-                <h1>Sistema GestorX</h1>
+                <h1>Sistema Planeja</h1>
                 <p>Software de gestão empresarial para sua empresa.
                 <p>
                 <div class="chamada">

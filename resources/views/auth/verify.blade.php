@@ -35,7 +35,7 @@
             <h2>Contato</h2>
             <span>(85) 9 9412-2172</span>
             <br>
-            <span>guinafelixdev.com.br</span>
+            <span>contato@planeja.com.br</span>
         </div>
         <div class="localizacao">
             <h2>Localização</h2>

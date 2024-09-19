@@ -57,7 +57,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 // Exibe a resposta do chatbot no chat
-                $('#chat-body').append('<p><strong>Bot:</strong> ' + response.response + '</p>');
+                $('#chat-body').append('<p><strong>PlanejAI:</strong> ' + response.response + '</p>');
 
                 // Rola o chat para o final
                 scrollToBottom();

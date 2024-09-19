@@ -310,7 +310,7 @@ span {
     flex-grow: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     margin-right: 10px;
 }
 
@@ -336,4 +336,32 @@ span {
 
 .close-chat:hover {
     color: #1351b4;
+}
+
+.portal-noticia {
+    display: flex;
+    flex-direction: column;
+    padding: 56px;
+    justify-content: flex-start;   
+}
+
+.portal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 8px;
+    align-items: center;
+    text-align: start;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: auto;
+}
+
+.portal-body {
+    display: flex;
+    padding: 16px;
+}
+
+#chatbot-footer input:focus {
+    border: 2px solid #007bff;
 }

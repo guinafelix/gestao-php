@@ -25,7 +25,7 @@
             <h2>Contato</h2>
             <span>(11) 3333-4444</span>
             <br>
-            <span>guinafelixdev.com.br<span>
+            <span>contato@planeja.com.br<span>
         </div>
         <div class="localizacao">
             <h2>Localização</h2>
