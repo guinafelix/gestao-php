@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  app:
+    user: "www-data"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gestao-php-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - gestao_app_data:/var/www
+    networks:
+      - laravel
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:stable
+    container_name: gestao-php-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - gestao_app_data:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - laravel
+
+  mysql:
+    image: mysql:5.7
+    container_name: gestao-php-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: gestao
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: gestao_user
+      MYSQL_PASSWORD: gestao_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  mysql_data:
+  gestao_app_data:
