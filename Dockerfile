@@ -10,6 +10,8 @@ WORKDIR /var/www
 
 COPY --chown=www-data:www-data . /var/www
 
+RUN composer install --no-dev --optimize-autoloader
+
 RUN mkdir -p /var/www/storage/logs \
     /var/www/storage/framework/cache \
     /var/www/storage/framework/sessions \
@@ -18,6 +20,7 @@ RUN mkdir -p /var/www/storage/logs \
     chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 USER www-data
