@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('img/logo-ia.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/estilo_basico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilo_basico.css') }}" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body>  
+<body>
   @include('app.layouts._partials.topo')
       <i id="chatbot-btn" class="fa-regular fa-comments"></i>
 
